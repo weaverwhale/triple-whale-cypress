@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "cypress open -b chrome --e2e"
+    "start": "cypress open -b chrome --e2e",
+    "demo": "CYPRESS_NO_COMMAND_LOG=1 cypress open -b chrome --e2e --env demo=true"
   },
   "dependencies": {
     "cypress": "^12.5.1"

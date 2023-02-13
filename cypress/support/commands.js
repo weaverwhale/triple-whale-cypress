@@ -33,7 +33,7 @@ Cypress.Commands.add('madisonPod', () => {
   cy.get('.admin-shop-card button').click()
 })
 
-const urlPrefix = 'https://app.triplewhale.com/api/v2/'
+const urlPrefix = 'https://api.triplewhale.com/api/v2/'
 Cypress.Commands.add('stubSummaryResponses', () => {
   cy.intercept('POST', `${urlPrefix}/summary-page/compare-stats*`, {
     statusCode: 200,
@@ -52,16 +52,16 @@ Cypress.Commands.add('stubSummaryResponses', () => {
 
   cy.intercept('GET', `${urlPrefix}/tw-metrics/metrics-data*`, {
     statusCode: 200,
-    fixture: 'metrics-data.json'
+    fixture: 'metrics-data-get.json'
   }).as('metrics-data')
 
   cy.intercept('POST', `${urlPrefix}/metrics-table/metrics-data*`, {
     statusCode: 200,
-    fixture: 'metrics-data.json'
+    fixture: 'metrics-data-post.json'
   }).as('metrics-data')
 
-  cy.intercept('GET', `${urlPrefix}/**/*`, []).as('catch-all')
-  cy.intercept('POST', `${urlPrefix}/**/*`, []).as('catch-all')
+  // cy.intercept('GET', `${urlPrefix}/**/*`, { data: [] }).as('catch-all')
+  // cy.intercept('POST', `${urlPrefix}/**/*`, { data: [] }).as('catch-all')
 
   cy.intercept('POST', '*ingest.sentry.io*', []).as('sentry')
 })
